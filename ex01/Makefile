@@ -6,7 +6,7 @@
 #    By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/14 17:07:05 by yaidriss          #+#    #+#              #
-#    Updated: 2024/01/01 21:18:05 by yaidriss         ###   ########.fr        #
+#    Updated: 2024/01/04 22:53:07 by yaidriss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,4 @@ re : fclean all
 run : re
 	@./${NAME}
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re run

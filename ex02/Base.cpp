@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 21:20:29 by yaidriss          #+#    #+#             */
-/*   Updated: 2024/01/03 21:38:59 by yaidriss         ###   ########.fr       */
+/*   Updated: 2024/01/04 23:00:24 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Base::~Base()
 {
-	std::cout << YELLOW << "Call Destructor" << RESET << std::endl;
 }
 
 Base* Base::generate(void)
@@ -28,23 +27,23 @@ Base* Base::generate(void)
 	{
 	case 0:
 	{
-		free(b);
-		free(c);
+		delete b;
+		delete c;
 		return  (reinterpret_cast<Base*>(a));
 	}
 		break;
 	case 1:
 	{
-		free(a);
-		free(c);
+		delete a;
+		delete c;
 		return (reinterpret_cast<Base*>(b));
 	}
 		break;
 	
 	default:
 	{
-		free(a);
-		free(b);
+		delete a;
+		delete b;
 		return (reinterpret_cast<Base*>(c));
 	}
 		break;
