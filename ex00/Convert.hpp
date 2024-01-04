@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Convert.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yassine <yassine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 20:58:39 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/12/30 21:10:15 by yassine          ###   ########.fr       */
+/*   Updated: 2024/01/02 05:23:01 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <iostream>
 #include <cctype>
 #include <cstring>
+#include <iomanip> 
+#include <sstream>
+#include <limits>
 #define RED "\033[0;31m"
 #define YELLOW "\033[0;33m"
 #define BLUE "\033[0;34m"

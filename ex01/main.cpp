@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yassine <yassine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:27:27 by yassine           #+#    #+#             */
-/*   Updated: 2024/01/01 04:39:46 by yassine          ###   ########.fr       */
+/*   Updated: 2024/01/01 22:44:03 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,16 @@
 #include <iostream>
 
 int main() {
-    data_t foo;
-    uintptr_t reinterpreted;
-
-    foo.dummy_str = std::string("test");
-    reinterpreted = Serialization::serialize(&foo);
-
-    cout << "OG foo (Data) Address = " << &foo << endl
-         << "dummy_str value = " << foo.dummy_str << endl;
-
-    cout << endl;
-
-    cout << "Reinterpreted foo value = " << reinterpreted << endl;
-
-    cout << endl;
-
-    data_t *deserialized;
-
-    deserialized = Serialization::deserialize(reinterpreted);
-
-    cout << "Deserialized Address = " << deserialized << endl
-         << "dummy_str value = " << deserialized->dummy_str << endl;
-
-    return EXIT_SUCCESS;
+   Data *d;
+   Data *data = new Data;
+   Serializer serializer;
+   uintptr_t ptr;
+   data->s = "hello world!"; 
+   ptr = serializer.serialize(data);
+   std::cout << YELLOW << "the ptr : " << RESET << ptr << std::endl;
+   d = serializer.deserialize(ptr);
+   std::cout << YELLOW << "the data : " << RESET << d->s << std::endl;
+   free(d);
+   return 0;
+   // system ("leaks ./Serializer");
 }

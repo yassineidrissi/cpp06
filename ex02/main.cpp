@@ -1,13 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serialze.cpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yassine <yassine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 16:30:34 by yassine           #+#    #+#             */
-/*   Updated: 2023/12/31 16:47:19 by yassine          ###   ########.fr       */
+/*   Created: 2024/01/01 22:29:43 by yaidriss          #+#    #+#             */
+/*   Updated: 2024/01/03 21:35:56 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
+#include "Base.hpp"
+
+int main()
+{
+	Base a;
+	Base *b = a.generate();
+	Base &c = *b;
+	a.identify(b);
+	a.identify(c);
+	free(b);
+	// system("leaks Base");
+	return 0;
+}

@@ -6,14 +6,14 @@
 #    By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/14 17:07:05 by yaidriss          #+#    #+#              #
-#    Updated: 2024/01/01 21:18:05 by yaidriss         ###   ########.fr        #
+#    Updated: 2024/01/01 22:44:52 by yaidriss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 FLAGE = -Wall -Wextra -Werror -std=c++98
-NAME = Serializer
-SRC =  Serializer.cpp main.cpp
+NAME = Base
+SRC =  Base.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 %.o : %.cpp

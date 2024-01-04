@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:35:14 by yassine           #+#    #+#             */
-/*   Updated: 2024/01/01 00:31:53 by yaidriss         ###   ########.fr       */
+/*   Updated: 2024/01/03 21:31:07 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,17 @@ Serializer::Serializer(const Serializer &src) {
 
 Serializer& Serializer::operator=(Serializer const &src)
 {
-    if (this != &src) {
-        // Assignment operator implementation goes here
-        // For example:
+    if (this != &src)
         this->d = src.d;
-    }
     return *this;
 }
 
 uintptr_t Serializer::serialize(Data* ptr)
 {
-	uintptr_t ret;
-	ret = reinterpret_cast<uintptr_t>(ptr);
-	return ret;
+	return reinterpret_cast<uintptr_t>(ptr);
 }
 
 Data* Serializer::deserialize(uintptr_t raw)
 {
-	Data *ret;
-	ret = reinterpret_cast<Data*>(raw);
-	return ret;
+	return reinterpret_cast<Data*>(raw);
 }

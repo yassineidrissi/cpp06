@@ -1,26 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 03:03:02 by yaidriss          #+#    #+#             */
-/*   Updated: 2023/12/30 03:03:05 by yaidriss         ###   ########.fr       */
+/*   Created: 2024/01/01 21:20:47 by yaidriss          #+#    #+#             */
+/*   Updated: 2024/01/02 02:40:13 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include <iostream>
+#include <string>
+#define RED "\033[0;31m"
+#define YELLOW "\033[0;33m"
+#define BLUE "\033[0;34m"
+#define GREEN "\033[0;32m"
+#define RESET "\033[0m"
 
-int main() {
-    // Literal value
-    double literal = 65.5;
+class Base
+{
+	public:
+	virtual ~Base();
+	Base *generate(void);
+	void identify(Base* p);
+	void identify(Base& p);
+};
 
-    // Output as different scalar types
-    std::cout << "As char: " << static_cast<char>(literal) << std::endl;
-    std::cout << "As int: " << static_cast<int>(literal) << std::endl;
-    std::cout << "As float: " << static_cast<float>(literal) << std::endl;
-    std::cout << "As double: " << literal << std::endl;
+class A: public Base
+{
+	public:
+		~A();
+};
 
-    return 0;
-}
+class B: public Base
+{
+	public:
+		~B();
+};
+
+class C: public Base
+{
+	public:
+		~C();	
+};

@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:31:08 by yassine           #+#    #+#             */
-/*   Updated: 2024/01/01 00:32:32 by yaidriss         ###   ########.fr       */
+/*   Updated: 2024/01/01 17:18:40 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct Data 
 {
-   char *s; 
+   std::string s; 
 }t_Data;
 
 class Serializer
