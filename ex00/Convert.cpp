@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:17:24 by yaidriss          #+#    #+#             */
-/*   Updated: 2024/01/03 22:07:39 by yaidriss         ###   ########.fr       */
+/*   Updated: 2024/01/04 22:21:39 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,15 @@ void put_char(double c)
 	else
 		std::cout << RED << "char : " << RESET << "Non displayable" << std::endl;
 }
-void convert_char(std::string c)
-{
-	const char *s = c.c_str();
-	double d = static_cast<double>(std::atof(s));
-	if (d > 256)
-	{
-		convert_err();
-		return;
-	}
-	put_char(d);
-	std::cout << YELLOW << "int : " << RESET << static_cast<int>(s[0]) << std::endl;
-	std::cout << GREEN << "float : " << RESET << static_cast<float>(s[0]) << std::endl;
-	std::cout << YELLOW << "double : " << RESET << static_cast<double>(s[0]) << std::endl;
-
-}
 
 void printf_fd(std::string s)
 {
-	s.erase(s.length() - 1);
+	int i = 0;
+	if (s[s.length() - 1] == '.' || s[s.length() - 1] == 'f')
+		i++;
+	if(s[s.length() - 2] == '.')
+		i++;
+	s.erase(s.length() - i);
 	std::istringstream	ss(s);
 	double f;
 	ss >> f;
@@ -88,7 +78,6 @@ void convert_d(std::string d)
 {
 	const char * s = d.c_str();	
 	double fd = static_cast<double>(std::atof(s));
-	std::cout << fd << std::endl;
 	put_char(static_cast<int>(std::atof(s)));
 	if (fd > INT_MAX || fd < INT_MIN)
 		std::cout << RED << " int : " << RESET << "impossible" << std::endl;
@@ -101,7 +90,6 @@ void convert_f(std::string d)
 {
 	const char * s = d.c_str();	
 	double fd = static_cast<double>(std::atof(s));
-	std::cout << fd << std::endl;
 	put_char(static_cast<int>(std::atof(s)));
 	if (fd > INT_MAX || fd < INT_MIN)
 		std::cout << RED << " int : " << RESET << "impossible" << std::endl;
@@ -180,8 +168,6 @@ void ScalarConverter::convert(std::string s)
 		convert_f(s);
 	else if(i == 1 && std::isdigit(s[0]))
 		convert_int(s);
-	else if(s.length() == 1)
-		convert_char(s);
 	else
 		convert_err();
 };
