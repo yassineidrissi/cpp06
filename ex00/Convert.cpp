@@ -6,16 +6,11 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:17:24 by yaidriss          #+#    #+#             */
-/*   Updated: 2024/01/04 22:33:06 by yaidriss         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:34:08 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Convert.hpp"
-
-const char* ScalarConverter::MyException::what() const throw()
-{
-	return (RED "input is not printable" RESET);
-};
 
 void convert_err(void)
 {
@@ -35,40 +30,33 @@ void put_char(double c)
 		std::cout << RED << "char : " << RESET << "Non displayable" << std::endl;
 }
 
-void printf_fd(std::string s)
+void printf_fd(double f)
 {
-	int i = 0;
-	if (s[s.length() - 1] == '.' || s[s.length() - 1] == 'f')
-		i++;
-	if(s[s.length() - 2] == '.')
-		i++;
-	s.erase(s.length() - i);
-	std::istringstream	ss(s);
-	double f;
-	ss >> f;
-
-	double max_val = std::numeric_limits<float>::max();
-	double min_val = std::numeric_limits<float>::lowest();
-	if (f > max_val || f < min_val) 
+	double max_f = std::numeric_limits<float>::max();
+	double min_f = std::numeric_limits<float>::lowest();
+	if (f > max_f || f < min_f) 
 	{
 		std::cout << RED << "float : " << RESET << "impossible" << std::endl;
 		std::cout << RED << "double : " << RESET << "impossible" << std::endl;
-		return ;
 	}
-	std::cout << GREEN << "float : " << RESET <<  std::fixed << std::setprecision(1)  << f<< "f" << std::endl;
-	std::cout << YELLOW << "double :" << RESET << f << std::endl;
+	else
+	{
+		std::cout << GREEN << "float : " << RESET <<  std::fixed << std::setprecision(1)  << f<< "f" << std::endl;
+		std::cout << YELLOW << "double :" << RESET << std::fixed << std::setprecision(1)  << f << std::endl;
+	}
 }
 
-void convert_print(std::string d)
+void convert_print(std::string s)
 {
-	const char * s = d.c_str();	
-	double fd = static_cast<double>(std::atof(s));
-	put_char(static_cast<int>(std::atof(s)));
+	const char * d = s.c_str();
+	double fd = static_cast<double>(std::atof(d));
+	put_char(fd);
 	if (fd > INT_MAX || fd < INT_MIN)
 		std::cout << RED << " int : " << RESET << "impossible" << std::endl;
 	else 
-		std::cout << YELLOW << "int : " << RESET << static_cast<int>(std::atof(s)) << std::endl;
-	printf_fd(s);
+		std::cout << YELLOW << "int : " << RESET << static_cast<int>(std::atof(d)) << std::endl;
+
+	printf_fd(fd);
 }
 
 void convert_handl(std::string s)
@@ -116,28 +104,21 @@ void ScalarConverter::convert(std::string s)
 	size_t f = 0;
 	size_t p = 0;
 	size_t err = 0;
-	size_t i = 0;
 	size_t len = s.length();
-	for(; i < len; i++)
+	for(size_t i = 0; i < len; i++)
 	{
-		if(s[i] == '.' && !f)
+		if(s[i] == '.' && !f && !p)
 			p++;
-		else if(s[i] == 'f')
+		else if(s[i] == 'f' && !f && len == i + 1)
 			f++;
-		else if(std::isdigit(s[i]))
+		else if((std::isdigit(s[i])) || (!i && len > 1 && (s[i] == '-' || s[i] == '+')))
 			d++;
 		else
 			err++;
 	}
 	if(s == "nan" || s == "nanf" || s == "+inf" || s == "+inff" || s == "-inf" || s == "-inff")
 		convert_handl(s);
-	else if((d == len) || (d = len -1 && (s[0] == '-' || s[0] == '+')))
-		convert_print(s);
-	else if(p < 2 && !f && !err)
-		convert_print(s);
-	else if(p < 2 && f < 2 && !err && s[len - 1] == 'f')
-		convert_print(s);
-	else if(i == 1 && std::isdigit(s[0]))
+	else if(!err)
 		convert_print(s);
 	else
 		convert_err();
