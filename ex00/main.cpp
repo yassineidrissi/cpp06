@@ -6,7 +6,7 @@
 /*   By: yaidriss <yaidriss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 22:15:58 by yaidriss          #+#    #+#             */
-/*   Updated: 2024/01/04 22:42:14 by yaidriss         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:58:21 by yaidriss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int main(int argc, char* argv[]) {
 	} catch (const std::exception& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-
 	return 0;
 }
